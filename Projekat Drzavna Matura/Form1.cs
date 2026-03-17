@@ -1,7 +1,10 @@
+using System.IO;
+
 namespace Projekat_Drzavna_Matura
 {
     public partial class Form : System.Windows.Forms.Form
     {
+        int Pozicija = 0;
         public Form()
         {
             InitializeComponent();
@@ -9,31 +12,33 @@ namespace Projekat_Drzavna_Matura
 
         private void DodajNovog_Click(object sender, EventArgs e)
         {
-            Sabloni.Text = "";
+            DodajRed();
+
+            Skola.SelectedIndex = -1;
+            Sabloni.SelectedIndex = -1;
             tIme.Text = "";
             tPrezime.Text = "";
-            Odeljenje.Text = "";
-            Jezik.Text = "";
-            TipMature.Text = "";
-            Predmet1.Text = "";
-            Predmet2.Text = "";
-            Predmet3.Text = "";
+            Odeljenje.SelectedIndex = -1;
+            Jezik.SelectedIndex = -1;
+            TipMature.SelectedIndex = -1;
+            Predmet1.SelectedIndex = -1;
+            Predmet2.SelectedIndex = -1;
+            Predmet3.SelectedIndex = -1;
+
+            OsveziTabelu();
         }
 
         private void TipMature_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Odeljenje.Items.Clear();
             Predmet3.Items.Clear();
+
+            if (TipMature.SelectedIndex == -1)
+                return;
 
             string izabraniTip = TipMature.SelectedItem.ToString();
 
             if (izabraniTip == "OPŠTA MATURA")
             {
-                Odeljenje.Items.Add("IV-1");
-                Odeljenje.Items.Add("IV-2");
-                Odeljenje.Items.Add("IV-3");
-                Odeljenje.Items.Add("IV-4");
-
                 Predmet3.Items.Add("Biologija");
                 Predmet3.Items.Add("Geografija");
                 Predmet3.Items.Add("Engleski jezik");
@@ -49,11 +54,6 @@ namespace Projekat_Drzavna_Matura
             }
             else if (izabraniTip == "STRUČNA MATURA")
             {
-                Odeljenje.Items.Add("III-1");
-                Odeljenje.Items.Add("III-2");
-                Odeljenje.Items.Add("III-3");
-                Odeljenje.Items.Add("III-4");
-
                 Predmet3.Items.Add("Zootehničar");
                 Predmet3.Items.Add("Tehničar za biotehnologiju");
                 Predmet3.Items.Add("Tehničar poljoprivredne tehnike");
@@ -113,9 +113,6 @@ namespace Projekat_Drzavna_Matura
             }
             else if (izabraniTip == "UMETNIČKA MATURA")
             {
-                Odeljenje.Items.Add("IV-Muzičko");
-                Odeljenje.Items.Add("IV-Likovno");
-
                 Predmet3.Items.Add("Solfeđo i harmonija");
             }
         }
@@ -124,6 +121,110 @@ namespace Projekat_Drzavna_Matura
         {
             if (Predmet1.SelectedIndex == -1)
                 Predmet1.SelectedIndex = Jezik.SelectedIndex;
+        }
+
+        private void Obrisi_Click(object sender, EventArgs e)
+        {
+            OsveziTabelu();
+
+        }
+
+        private void Sacuvaj_Click(object sender, EventArgs e)
+        {
+            DodajRed();
+            
+            OsveziTabelu();
+        }
+
+
+
+        public void DodajRed()
+        {
+            if (TipMature.SelectedIndex == -1 || Predmet1.SelectedIndex == -1 || Predmet2.SelectedIndex == -1 || Predmet3.SelectedIndex == -1 || Jezik.SelectedIndex == -1 || Odeljenje.SelectedIndex == -1 || Skola.SelectedIndex == -1)
+            {
+                MessageBox.Show("Popunite sve neophodne podatke (osim šablona) pre čuvanja!");
+                return;
+            }
+
+            string ime = tIme.Text;
+            string prezime = tPrezime.Text;
+
+            if (ime == "")
+            {
+                ime = "NA";
+            }
+            if (prezime == "")
+            {
+                prezime = "NA";
+            }
+
+            string skola = Skola.Text;
+            string odeljenje = Odeljenje.Text;
+            string tipMature = TipMature.Text;
+            string jezik = Jezik.Text;
+            string prviPredmet = Predmet1.Text;
+            string drugiPredmet = Predmet2.Text;
+            string treciPredmet = Predmet3.Text;
+            string redZaUpis = $"{ime + " " + prezime};{skola};{odeljenje};{tipMature};{jezik};{prviPredmet};{drugiPredmet};{treciPredmet}";
+
+            using (StreamWriter sw = new StreamWriter("ucenici.csv", true))
+            {
+                sw.WriteLine(redZaUpis);
+            }
+
+            MessageBox.Show("Podaci o učeniku su uspešno sačuvani!");
+        }
+
+        private void OsveziTabelu()
+        {
+            TabelaSvihUnetihUcenika.Rows.Clear();
+
+            if (File.Exists("ucenici.csv"))
+            {
+                string[] sviRedovi = File.ReadAllLines("ucenici.csv");
+
+                foreach (string red in sviRedovi)
+                {
+                    string[] podaci = red.Split(';');
+
+                    if (podaci.Length == 8)
+                    {
+                        TabelaSvihUnetihUcenika.Rows.Add(podaci[0], podaci[1], podaci[2], podaci[3], podaci[4], podaci[5], podaci[6], podaci[7]);
+                    }
+                }
+            }
+        }
+
+        private void Form_Load(object sender, EventArgs e)
+        {
+            TabelaSvihUnetihUcenika.Columns.Add("ImePrezime", "Ime i prezime");
+            TabelaSvihUnetihUcenika.Columns.Add("Skola", "Škola");
+            TabelaSvihUnetihUcenika.Columns.Add("Odeljenje", "Odeljenje");
+            TabelaSvihUnetihUcenika.Columns.Add("TipMature", "Tip mature");
+            TabelaSvihUnetihUcenika.Columns.Add("Jezik", "Jezik");
+            TabelaSvihUnetihUcenika.Columns.Add("PrviPredmet", "1. Predmet");
+            TabelaSvihUnetihUcenika.Columns.Add("DrugiPredmet", "2. Predmet");
+            TabelaSvihUnetihUcenika.Columns.Add("TreciPredmet", "3. Predmet");
+
+
+        }
+
+        private void Prethodni_Click(object sender, EventArgs e)
+        {
+            if (Pozicija > 0)
+            {
+                Pozicija--;
+                TabelaSvihUnetihUcenika.CurrentCell = TabelaSvihUnetihUcenika.Rows[Pozicija].Cells[0];
+            }
+        }
+
+        private void Sledeci_Click(object sender, EventArgs e)
+        {
+            if (Pozicija < TabelaSvihUnetihUcenika.Rows.Count - 1)
+            {
+                Pozicija++;
+                TabelaSvihUnetihUcenika.CurrentCell = TabelaSvihUnetihUcenika.Rows[Pozicija].Cells[0];
+            }
         }
     }
 }

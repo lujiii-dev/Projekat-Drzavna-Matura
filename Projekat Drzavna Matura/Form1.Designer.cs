@@ -33,6 +33,8 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             tabControl1 = new TabControl();
             Profili = new TabPage();
+            Skola = new ComboBox();
+            label21 = new Label();
             tPrezime = new TextBox();
             TabelaSvihUnetihUcenika = new DataGridView();
             label12 = new Label();
@@ -94,11 +96,13 @@
             tabControl1.Location = new Point(12, 8);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(684, 475);
+            tabControl1.Size = new Size(929, 577);
             tabControl1.TabIndex = 0;
             // 
             // Profili
             // 
+            Profili.Controls.Add(Skola);
+            Profili.Controls.Add(label21);
             Profili.Controls.Add(tPrezime);
             Profili.Controls.Add(TabelaSvihUnetihUcenika);
             Profili.Controls.Add(label12);
@@ -131,10 +135,29 @@
             Profili.Location = new Point(4, 24);
             Profili.Name = "Profili";
             Profili.Padding = new Padding(3);
-            Profili.Size = new Size(676, 447);
+            Profili.Size = new Size(921, 549);
             Profili.TabIndex = 0;
             Profili.Text = "Evidencija Maturanata";
             Profili.UseVisualStyleBackColor = true;
+            // 
+            // Skola
+            // 
+            Skola.DropDownStyle = ComboBoxStyle.DropDownList;
+            Skola.FormattingEnabled = true;
+            Skola.Items.AddRange(new object[] { "Treća beogradska gimnazija", "Prva beogradska gimnazija", "Peta beogradska gimnazija", "Deveta gimnazija \"Mihailo Petrović Alas\"", "Deseta gimnazija \"Mihajlo Pupin\"", "Četrnaesta beogradska gimnazija", "Četvrta beogradska gimnazija", "Trinaesta beogradska gimnazija", "Sedma beogradska gimnazija", "Osma beogradska gimnazija", "Dvanaesta beogradska gimnazija", "Gimnazija \"Patrijarh Pavle\"", "Zemunska gimnazija", "Šesta beogradska gimnazija", "Matematička gimnazija", "Filološka gimnazija", "Sportska gimnazija", "Gimnazija \"Sveti Sava\"", "Peta ekonomska škola \"Rakovica\"", "Prva ekonomska škola", "Druga ekonomska škola", "Pravno-poslovna škola Beograd", "Ekonomska škola \"Nada Dimić\"", "Medicinska škola \"Beograd\"", "Medicinska škola na Zvezdari", "Zubotehnička škola", "Farmaceutsko-fizioterapeutska škola", "Srednja medicinska škola \"Nadežda Petrović\"", "Elektrotehnička škola \"Nikola Tesla\"", "Elektrotehnička škola \"Stari grad\"", "Elektrotehnička škola \"Rade Končar\"", "Elektrotehnička škola \"Zemun\"", "Politehnika - škola za nove tehnologije", "Vazduhoplovna akademija", "Građevinska škola Beograd", "Arhitektonska tehnička škola", "Geodetska tehnička škola", "Saobraćajno-tehnička škola", "Tehnička škola GSP", "Ugostiteljsko-turistička škola", "Srednja turistička škola", "Trgovačka škola", "Hemijsko-prehrambena tehnološka škola", "Škola za negu lepote", "Škola za dizajn", "Tehnoart Beograd", "Muzička škola \"Mokranjac\"", "Muzička škola \"Stanković\"", "Baletska škola \"Lujo Davičo\"", "Škola za dizajn tekstila" });
+            Skola.Location = new Point(620, 153);
+            Skola.Name = "Skola";
+            Skola.Size = new Size(286, 23);
+            Skola.TabIndex = 30;
+            // 
+            // label21
+            // 
+            label21.AutoSize = true;
+            label21.Location = new Point(576, 156);
+            label21.Name = "label21";
+            label21.Size = new Size(38, 15);
+            label21.TabIndex = 29;
+            label21.Text = "Škola:";
             // 
             // tPrezime
             // 
@@ -145,6 +168,11 @@
             // 
             // TabelaSvihUnetihUcenika
             // 
+            TabelaSvihUnetihUcenika.AllowUserToAddRows = false;
+            TabelaSvihUnetihUcenika.AllowUserToDeleteRows = false;
+            TabelaSvihUnetihUcenika.AllowUserToOrderColumns = true;
+            TabelaSvihUnetihUcenika.AllowUserToResizeColumns = false;
+            TabelaSvihUnetihUcenika.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = SystemColors.Control;
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
@@ -174,7 +202,7 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
             TabelaSvihUnetihUcenika.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             TabelaSvihUnetihUcenika.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            TabelaSvihUnetihUcenika.Size = new Size(640, 104);
+            TabelaSvihUnetihUcenika.Size = new Size(892, 205);
             TabelaSvihUnetihUcenika.TabIndex = 27;
             // 
             // label12
@@ -189,25 +217,27 @@
             // 
             // Obrisi
             // 
-            Obrisi.Location = new Point(559, 269);
+            Obrisi.Location = new Point(811, 269);
             Obrisi.Name = "Obrisi";
             Obrisi.Size = new Size(95, 23);
             Obrisi.TabIndex = 25;
             Obrisi.Text = "Obriši";
             Obrisi.UseVisualStyleBackColor = true;
+            Obrisi.Click += Obrisi_Click;
             // 
             // Sacuvaj
             // 
-            Sacuvaj.Location = new Point(458, 269);
+            Sacuvaj.Location = new Point(710, 269);
             Sacuvaj.Name = "Sacuvaj";
             Sacuvaj.Size = new Size(95, 23);
             Sacuvaj.TabIndex = 24;
             Sacuvaj.Text = "Sačuvaj";
             Sacuvaj.UseVisualStyleBackColor = true;
+            Sacuvaj.Click += Sacuvaj_Click;
             // 
             // DodajNovog
             // 
-            DodajNovog.Location = new Point(357, 269);
+            DodajNovog.Location = new Point(609, 269);
             DodajNovog.Name = "DodajNovog";
             DodajNovog.Size = new Size(95, 23);
             DodajNovog.TabIndex = 23;
@@ -223,6 +253,7 @@
             Sledeci.TabIndex = 22;
             Sledeci.Text = "Sledeći >>";
             Sledeci.UseVisualStyleBackColor = true;
+            Sledeci.Click += Sledeci_Click;
             // 
             // Prethodni
             // 
@@ -232,6 +263,7 @@
             Prethodni.TabIndex = 21;
             Prethodni.Text = "<< Prethodni";
             Prethodni.UseVisualStyleBackColor = true;
+            Prethodni.Click += Prethodni_Click;
             // 
             // Predmet3
             // 
@@ -240,7 +272,7 @@
             Predmet3.Items.AddRange(new object[] { "Biologija", "Geografija", "Engleski jezik", "Istorija", "Italijanski jezik", "Nemački jezik", "Ruski jezik", "Srpski kao nematernji jezik", "Fizika", "Francuski jezik", "Hemija", "Španski jezik", "Zootehničar", "Tehničar za biotehnologiju", "Tehničar poljoprivredne tehnike", "Tehničar hortikulture", "Tehničar za pejzažnu arhitekturu", "Šumarski tehničar", "Geološki tehničar za geotehniku i hidrogeologiju", "Geološki tehničar za istraživanje mineralnih sirovina", "Rudarski tehničar", "Rudarski tehničar za pripremu mineralnih sirovina", "Brodomašinski tehničar", "Mašinski tehničar za kompjutersko konstruisanje", "Mašinski tehničar merne i regulacione tehnike", "Mašinski tehničar motornih vozila", "Tehničar grejanja i klimatizacije", "Tehničar za kompjutersko upravljanje (CNC) mašina", "Tehničar za robotiku", "Tehničar mašinske energetike", "Tehničar optike", "Objedinjeni test za obrazovne profile:", "Elektrotehničar automatike", "Elektrotehničar elektromotornih pogona", "Elektrotehničar elektronike", "Elektrotehničar energetike", "Elektrotehničar za termičke i rashladne uređaje", "Elektrotehničar informacionih tehnologija", "Elektrotehničar procesnog upravljanja", "Elektrotehničar računara", "Tehničar grafičke dorade", "Tehničar za zaštitu životne sredine", "Tehničar za industrijsku farmaceutsku tehnologiju", "Tehničar štampe", "Fotograf", "Hemijski laborant", "Hemijsko-tehnološki tehničar", "Tekstilni tehničar", "Građevinski tehničar za laboratorijska ispitivanja", "Građevinski tehničar za hidrogradnju", "Izvođač instalaterskih i završnih građevinskih radova", "Nautički tehničar – rečni smer", "Saobraćajno-transportni tehničar", "Tehničar vuče", "Tehničar PTT saobraćaja", "Tehničar unutrašnjeg transporta", "Transportni komercijalista", "Objedinjeni test za obrazovne profile: Aranžer u trgovini i Trgovinski tehničar", "Kulinarski tehničar", "Ugostiteljski tehničar", "Objedinjeni test za obrazovne profile:", "Ekonomski tehničar", "Finansijski tehničar", "Carinski tehničar", "Ginekološko-akušerska sestra", "Zubni tehničar", "Medicinska sestra – vaspitač", "Pedijatrijska sestra – tehničar", "Sanitarno-ekološki tehničar", "Scenski masker i vlasuljar", "Solfeđo i harmonija" });
             Predmet3.Location = new Point(87, 237);
             Predmet3.Name = "Predmet3";
-            Predmet3.Size = new Size(244, 23);
+            Predmet3.Size = new Size(286, 23);
             Predmet3.TabIndex = 20;
             // 
             // label10
@@ -259,7 +291,7 @@
             Predmet2.Items.AddRange(new object[] { "Matematika" });
             Predmet2.Location = new Point(87, 208);
             Predmet2.Name = "Predmet2";
-            Predmet2.Size = new Size(244, 23);
+            Predmet2.Size = new Size(286, 23);
             Predmet2.TabIndex = 18;
             // 
             // label11
@@ -278,7 +310,7 @@
             Predmet1.Items.AddRange(new object[] { "Srpski jezik i književnost", "Albanski jezik i književnost", "Bosanski jezik i književnost", "Bugarski jezik i književnost", "Mađarski jezik i književnost", "Rumunski jezik i književnost", "Rusinski jezik i književnost", "Slovački jezik i književnost", "Hrvatski jezik i književnost" });
             Predmet1.Location = new Point(87, 179);
             Predmet1.Name = "Predmet1";
-            Predmet1.Size = new Size(244, 23);
+            Predmet1.Size = new Size(286, 23);
             Predmet1.TabIndex = 16;
             // 
             // label9
@@ -297,7 +329,7 @@
             TipMature.Items.AddRange(new object[] { "OPŠTA MATURA", "STRUČNA MATURA", "UMETNIČKA MATURA" });
             TipMature.Location = new Point(87, 150);
             TipMature.Name = "TipMature";
-            TipMature.Size = new Size(244, 23);
+            TipMature.Size = new Size(286, 23);
             TipMature.TabIndex = 14;
             TipMature.SelectedIndexChanged += TipMature_SelectedIndexChanged;
             // 
@@ -315,9 +347,9 @@
             Jezik.DropDownStyle = ComboBoxStyle.DropDownList;
             Jezik.FormattingEnabled = true;
             Jezik.Items.AddRange(new object[] { "Srpski jezik i književnost", "Albanski jezik i književnost", "Bosanski jezik i književnost", "Bugarski jezik i književnost", "Mađarski jezik i književnost", "Rumunski jezik i književnost", "Rusinski jezik i književnost", "Slovački jezik i književnost", "Hrvatski jezik i književnost" });
-            Jezik.Location = new Point(474, 137);
+            Jezik.Location = new Point(620, 211);
             Jezik.Name = "Jezik";
-            Jezik.Size = new Size(180, 23);
+            Jezik.Size = new Size(286, 23);
             Jezik.TabIndex = 12;
             Jezik.SelectedIndexChanged += Jezik_SelectedIndexChanged;
             // 
@@ -325,9 +357,10 @@
             // 
             Odeljenje.DropDownStyle = ComboBoxStyle.DropDownList;
             Odeljenje.FormattingEnabled = true;
-            Odeljenje.Location = new Point(474, 108);
+            Odeljenje.Items.AddRange(new object[] { "III-1", "III-2", "III-3", "III-4", "IV-1", "IV-2", "IV-3", "IV-4" });
+            Odeljenje.Location = new Point(620, 182);
             Odeljenje.Name = "Odeljenje";
-            Odeljenje.Size = new Size(180, 23);
+            Odeljenje.Size = new Size(286, 23);
             Odeljenje.TabIndex = 11;
             // 
             // Sabloni
@@ -336,13 +369,13 @@
             Sabloni.FormattingEnabled = true;
             Sabloni.Location = new Point(121, 46);
             Sabloni.Name = "Sabloni";
-            Sabloni.Size = new Size(399, 23);
+            Sabloni.Size = new Size(281, 23);
             Sabloni.TabIndex = 10;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(434, 140);
+            label7.Location = new Point(580, 214);
             label7.Name = "label7";
             label7.Size = new Size(34, 15);
             label7.TabIndex = 9;
@@ -351,7 +384,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(408, 111);
+            label6.Location = new Point(554, 185);
             label6.Name = "label6";
             label6.Size = new Size(60, 15);
             label6.TabIndex = 8;
@@ -385,11 +418,11 @@
             // 
             // Primeni
             // 
-            Primeni.Location = new Point(526, 45);
+            Primeni.Location = new Point(408, 46);
             Primeni.Name = "Primeni";
             Primeni.Size = new Size(128, 23);
             Primeni.TabIndex = 3;
-            Primeni.Text = "PRIMENI";
+            Primeni.Text = "Primeni";
             Primeni.UseVisualStyleBackColor = true;
             // 
             // label3
@@ -397,9 +430,9 @@
             label3.AutoSize = true;
             label3.Location = new Point(14, 50);
             label3.Name = "label3";
-            label3.Size = new Size(102, 15);
+            label3.Size = new Size(79, 15);
             label3.TabIndex = 2;
-            label3.Text = "Učitaj Profil Škole:";
+            label3.Text = "Učitaj Šablon:";
             // 
             // label2
             // 
@@ -443,9 +476,9 @@
             Evidencija.Location = new Point(4, 24);
             Evidencija.Name = "Evidencija";
             Evidencija.Padding = new Padding(3);
-            Evidencija.Size = new Size(676, 447);
+            Evidencija.Size = new Size(921, 549);
             Evidencija.TabIndex = 1;
-            Evidencija.Text = "Profili/Šabloni/Kombinacija-Ožeg";
+            Evidencija.Text = "Profili/Šabloni";
             Evidencija.UseVisualStyleBackColor = true;
             // 
             // ObrisiSablon
@@ -614,10 +647,11 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(708, 493);
+            ClientSize = new Size(969, 611);
             Controls.Add(tabControl1);
             Name = "Form";
             Text = "Projekat Drzavna Matura";
+            Load += Form_Load;
             tabControl1.ResumeLayout(false);
             Profili.ResumeLayout(false);
             Profili.PerformLayout();
@@ -678,5 +712,7 @@
         private Label label17;
         private ComboBox TipMatureS;
         private Label label16;
+        private ComboBox Skola;
+        private Label label21;
     }
 }
