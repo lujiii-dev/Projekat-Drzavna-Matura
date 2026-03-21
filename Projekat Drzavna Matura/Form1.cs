@@ -132,7 +132,7 @@ namespace Projekat_Drzavna_Matura
         private void Sacuvaj_Click(object sender, EventArgs e)
         {
             DodajRed();
-            
+
             OsveziTabelu();
         }
 
@@ -225,6 +225,11 @@ namespace Projekat_Drzavna_Matura
                 Pozicija++;
                 TabelaSvihUnetihUcenika.CurrentCell = TabelaSvihUnetihUcenika.Rows[Pozicija].Cells[0];
             }
+        }
+
+        private void Refresh_Click(object sender, EventArgs e)
+        {
+            OsveziTabelu();
         }
     }
 }
