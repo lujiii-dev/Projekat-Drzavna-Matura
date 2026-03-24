@@ -11,20 +11,7 @@ namespace Projekat_Drzavna_Matura
 
         private void Form_Load(object sender, EventArgs e)
         {
-            if (File.Exists("ucenici.csv"))
-            {
-                string[] sviRedovi = File.ReadAllLines("sabloni.csv");
-
-                foreach (string red in sviRedovi)
-                {
-                    string[] podaci = red.Split(';');
-
-                    if (podaci.Length == 8)
-                    {
-                        Sabloni.Items.Add(podaci[0]);
-                    }
-                }
-            }
+            ProcitajSablon();
 
             TabelaSvihUnetihUcenika.Columns.Add("ImePrezime", "Ime i prezime");
             TabelaSvihUnetihUcenika.Columns.Add("Skola", "Škola");
@@ -251,7 +238,7 @@ namespace Projekat_Drzavna_Matura
         private void SDodajNovog_Click(object sender, EventArgs e)
         {
             SDodajRed();
-
+            ProcitajSablon();
             SSkola.SelectedIndex = -1;
             tNazivSablona.Text = "";
             SOdeljenje.SelectedIndex = -1;
@@ -292,7 +279,7 @@ namespace Projekat_Drzavna_Matura
         private void SObrisi_Click(object sender, EventArgs e)
         {
             SObrisiRed('b');
-
+            ProcitajSablon();
             SOsveziTabelu();
         }
 
@@ -384,6 +371,7 @@ namespace Projekat_Drzavna_Matura
             SPredmet3.Text = podaci[7];
 
             SObrisiRed('i');
+            ProcitajSablon();
         }
 
         private void Primeni_Click(object sender, EventArgs e)
@@ -432,7 +420,7 @@ namespace Projekat_Drzavna_Matura
         private void SSacuvaj_Click(object sender, EventArgs e)
         {
             SDodajRed();
-
+            ProcitajSablon();
             SOsveziTabelu();
         }
 
@@ -617,6 +605,26 @@ namespace Projekat_Drzavna_Matura
                     if (podaci.Length == 8)
                     {
                         TabelaSablona.Rows.Add(podaci[0], podaci[1], podaci[2], podaci[3], podaci[4], podaci[5], podaci[6], podaci[7]);
+                    }
+                }
+            }
+        }
+
+        public void ProcitajSablon()
+        {
+            Sabloni.Items.Clear();
+
+            if (File.Exists("sabloni.csv"))
+            {
+                string[] sviRedovi = File.ReadAllLines("sabloni.csv");
+
+                foreach (string red in sviRedovi)
+                {
+                    string[] podaci = red.Split(';');
+
+                    if (podaci.Length == 8)
+                    {
+                        Sabloni.Items.Add(podaci[0]);
                     }
                 }
             }
