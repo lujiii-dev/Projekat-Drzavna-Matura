@@ -460,6 +460,7 @@ namespace Projekat_Drzavna_Matura
 
             MessageBox.Show("Podaci o učeniku su uspešno sačuvani!");
         }
+
         public void ObrisiRed(char tip)
         {
             if (TabelaSvihUnetihUcenika.SelectedRows.Count > 0)

@@ -373,7 +373,7 @@
             Jezik.DropDownStyle = ComboBoxStyle.DropDownList;
             Jezik.Font = new Font("Microsoft Sans Serif", 12F);
             Jezik.FormattingEnabled = true;
-            Jezik.Items.AddRange(new object[] { "Srpski jezik i književnost", "Albanski jezik i književnost", "Bosanski jezik i književnost", "Bugarski jezik i književnost", "Mađarski jezik i književnost", "Rumunski jezik i književnost", "Rusinski jezik i književnost", "Slovački jezik i književnost", "Hrvatski jezik i književnost" });
+            Jezik.Items.AddRange(new object[] { "Srpski jezik", "Albanski jezik", "Bosanski jezik", "Bugarski jezik", "Mađarski jezik", "Rumunski jezik", "Rusinski jezik", "Slovački jezik", "Hrvatski jezik" });
             Jezik.Location = new Point(900, 211);
             Jezik.Name = "Jezik";
             Jezik.Size = new Size(391, 28);
@@ -729,7 +729,7 @@
             SJezik.DropDownStyle = ComboBoxStyle.DropDownList;
             SJezik.Font = new Font("Microsoft Sans Serif", 12F);
             SJezik.FormattingEnabled = true;
-            SJezik.Items.AddRange(new object[] { "Srpski jezik i književnost", "Albanski jezik i književnost", "Bosanski jezik i književnost", "Bugarski jezik i književnost", "Mađarski jezik i književnost", "Rumunski jezik i književnost", "Rusinski jezik i književnost", "Slovački jezik i književnost", "Hrvatski jezik i književnost" });
+            SJezik.Items.AddRange(new object[] { "Srpski jezik", "Albanski jezik", "Bosanski jezik", "Bugarski jezik", "Mađarski jezik", "Rumunski jezik", "Rusinski jezik", "Slovački jezik", "Hrvatski jezik" });
             SJezik.Location = new Point(900, 148);
             SJezik.Name = "SJezik";
             SJezik.Size = new Size(391, 28);
